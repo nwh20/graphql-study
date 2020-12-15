@@ -15,12 +15,13 @@ const AddBook = () => {
 
   if (loading) return <div>Loading</div>;
   if (error) return <div>Error</div>;
+  if (!data) return <div>No data</div>;
 
   const printAuthors = data.authors.map(author => {
     return (
       <option key={author.id} value={author.id}>{author.name}</option>
     )
-  })
+  });
 
   const submitForm = e => {
     e.preventDefault();
@@ -39,17 +40,17 @@ const AddBook = () => {
 
       <div className="field">
         <label>Book Name</label>
-        <input type="text" onChange={(e)=> setState({...state, name: e.target.value})} />
+        <input type="text" onChange={(e)=> setState({ ...state, name: e.target.value })} />
       </div>
 
       <div className="field">
         <label>Genre</label>
-        <input type="text" onChange={(e)=> setState({...state, genre: e.target.value})} />
+        <input type="text" onChange={(e)=> setState({ ...state, genre: e.target.value })} />
       </div>
 
       <div className="field">
         <label>Author</label>
-        <select onChange={(e)=> setState({...state, authorId: e.target.value})}>
+        <select onChange={(e)=> setState({ ...state, authorId: e.target.value })}>
           <option>Select author</option>
           {printAuthors}
         </select>
